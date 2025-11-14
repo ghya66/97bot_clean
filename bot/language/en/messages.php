@@ -1,0 +1,30 @@
+<?php
+return [
+    //这几个按钮 多语言时前面的图标不可动
+    '切换语言' => "🌐 language",
+    '删除消息' => "⛔️ del message",
+    '返回上级' => "🔙 back",
+    '删除键盘' => "⛔️ del keypad",
+    '返回' => "🔙 back", 
+    
+    '启动机器人'=>"start robot",
+    '显示ID'=>"Show ID",
+    '未设置用户名' => "No username set", 
+    '消息模块过期删除' => "Module message expired and deleted\nPlease contact the robot again", 
+    '上一步模块重载成功' => "Previous step·Module reloaded successfully", 
+    '模块重载成功' => "Module reload succeeded", 
+    '键盘模块消息' => "keyboard module message", 
+    '键盘删除成功' => "Keyboard deleted successfully", 
+    '模块加载成功' => "Module loaded successfully",  
+    '发送模块消息' => "Send Module Message",  
+    '未找到对应模块事件' => "No corresponding module event found",  
+    '机器人过期提示'=>"ㅤ\n<b>Sorry, the robot has expired</b>\n\n<code>Expiration time: %date%</code>\n\nPlease ask the boss %tg% to privately message the bot to automatically purchase extra time",
+    '模块无权操作提示'=>"Module belongs to: %toUser% \nSorry, you do not have permission to operate",
+    '未设置start消息提示'=>"The robot has not set startup message content\n\nSend command:\n<code>Set startup message</code><b>After</b> write any text to set startup message content\n\nFor example, send the following content :\n<code>Set startup message Hello boss, what services do you need? </code>",
+    '用户修改昵称提示'=>"Prompt for user to change nickname",
+    '用户名'=>"username",
+    '原昵称'=>"original nickname",
+    '新昵称'=>"new nickname",
+    '规避风险提示'=>"Risk avoidance tips",
+    '未设置用户名'=>"Username not set",
+];

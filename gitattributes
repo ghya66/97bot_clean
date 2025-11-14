@@ -1,0 +1,25 @@
+# ================== 统一换行符 / 文本文件 ==================
+*.php   text eol=lf
+*.sh    text eol=lf
+*.md    text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+*.json  text eol=lf
+*.html  text eol=lf
+*.css   text eol=lf
+*.js    text eol=lf
+*.txt   text eol=lf
+
+# 让 Git 按文本方式处理这些文件，避免 Windows / Linux 来回切换出现 CRLF/LF 乱七八糟的问题
+* text=auto
+
+# ================== 二进制文件标记 ==================
+97bot binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.zip binary
+*.gz  binary
+*.tar binary

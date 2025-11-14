@@ -1,0 +1,107 @@
+@font-face {
+  font-family: "myico"; /* Project id 3894819 */
+  src: url('iconfont.woff2?t=1700414937361') format('woff2'),
+       url('iconfont.woff?t=1700414937361') format('woff'),
+       url('iconfont.ttf?t=1700414937361') format('truetype');
+}
+
+.myico {
+  font-family: "myico" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.myico-SDO:before {
+  content: "\e62b";
+}
+
+.myico-SUP:before {
+  content: "\e688";
+}
+
+.myico-TRX-copy:before {
+  content: "\e8ef";
+}
+
+.myico-TRX:before {
+  content: "\e63c";
+}
+
+.myico-U:before {
+  content: "\e628";
+}
+
+.myico-Up:before {
+  content: "\e75e";
+}
+
+.myico-USDT1:before {
+  content: "\e61a";
+}
+
+.myico-MONEY1:before {
+  content: "\e70e";
+}
+
+.myico-USDT3:before {
+  content: "\e6a6";
+}
+
+.myico-MONEY:before {
+  content: "\e602";
+}
+
+.myico-TRX2:before {
+  content: "\e8ee";
+}
+
+.myico-MONEY2:before {
+  content: "\e831";
+}
+
+.myico-ETH:before {
+  content: "\e7f2";
+}
+
+.myico-LTC:before {
+  content: "\e7f3";
+}
+
+.myico-MNX:before {
+  content: "\e7f4";
+}
+
+.myico-STEEM:before {
+  content: "\e7fb";
+}
+
+.myico-BNB:before {
+  content: "\e7ec";
+}
+
+.myico-BCN:before {
+  content: "\e7ed";
+}
+
+.myico-BCH:before {
+  content: "\e7ee";
+}
+
+.myico-BTC:before {
+  content: "\e7ef";
+}
+
+.myico-DOGE:before {
+  content: "\e7f0";
+}
+
+.myico-ETC:before {
+  content: "\e7f1";
+}
+
+.myico-USDT:before {
+  content: "\e7f8";
+}
+

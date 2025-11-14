@@ -1,0 +1,86 @@
+<div class='local'>
+    <el-row v-for="(item, index) in anniu" :key="index" class="row-bg" :gutter="2">
+      <el-col v-for="(items, indexs) in item" :key="indexs" :span="item.length==1?18:item.length==2?9:6" class="sort-handle  ">
+        <el-tag style="border-color:rgb(0 0 0 / 12%);border-radius: 4px;text-align: center;width: 100%;" closable
+          @close="delbtn(items.id,index,indexs,items.comId)" @click.native="editbtn(index,indexs,items)" :type="items.text == '新按钮'?'info':''"
+          class="custom-tag shoushi">
+          {{items.text}}
+        </el-tag>
+
+      </el-col>
+      <el-col :span="6">
+        <el-button plain icon="el-icon-plus" @click="addbtn(index)" v-if="item.length <4" size="mini">新增</el-button>
+      </el-col>
+    </el-row>
+    <el-row class="row-bg ">
+      <el-button plain icon="el-icon-circle-plus-outline" @click="newHang()" size="mini">新增一行按钮</el-button>
+      <el-button type="danger" plain icon="el-icon-delete" @click="delHang()" size="mini">删除最后一行按钮</el-button>
+    </el-row>
+
+    <el-dialog :visible.sync="editShow" :close-on-click-modal="true" title="编辑按钮" width="420px"   class="CSSmodal" :append-to-body="true" center>
+      <el-form ref="editBtnForm" :model="editBtnForm" label-width="100px" :rules="ruled">
+        <el-row :gutter="15">
+
+          <el-col :sm="24">
+            <el-form-item prop="text">
+              <template slot="label">
+                按钮名称
+              </template>
+              <el-input placeholder="按钮名称" v-model="editBtnForm.text" clearable maxlength="24" show-word-limit />
+            </el-form-item>
+          </el-col>
+
+          <el-col :sm="24">
+            <el-form-item prop="type">
+              <template slot="label">
+                按钮类型
+              </template>
+              <el-select clearable v-model="editBtnForm.type" placeholder="请选择按钮类型" @change="btnsele">
+                <el-option label="打开网址" value="url" ></el-option>
+                <el-option label="按钮回调消息" value="callback_data"></el-option> 
+              </el-select>
+            </el-form-item>
+          </el-col>
+
+          <el-col :sm="24" v-if="editBtnForm.type == 'url'">
+            <el-form-item prop="url">
+              <template slot="label">
+                url地址
+                <el-tooltip content="比如：https://t.me/phpTRON  可以打开网址,联系指定电报,打开群链接,打开频道链接等一切URL,">
+                  <template slot="content">
+                    可以打开网址,联系指定电报,进入群组,进入频道链接等<br><br>
+                    比如打开电报群：<span class="shenlan   url shoushi">https://t.me/phpTRON</span><br><br>
+                    比如联系作者TG：<span class="shenlan   url shoushi">https://t.me/gd801</span><br><br>
+                    比如打开网址：<span class="shenlan   url shoushi">https://www.97bot.com</span><br>
+
+                  </template>
+                  <i class="el-icon-question"></i>
+                </el-tooltip>
+              </template>
+              <el-input placeholder="请输入打开地址" v-model="editBtnForm.url" clearable />
+            </el-form-item>
+          </el-col>
+          <el-col :sm="24" v-if="editBtnForm.type == 'callback_data'">
+            <el-form-item prop="callback_data">
+              <template slot="label">
+                按钮数据
+                <el-tooltip>
+                  <template slot="content">
+                    该按钮类型,需配合：api_callback文件夹内的按钮事件使用（ <a href="https://www.97bot.com/jiaocheng/107.html" target="_blank" rel="noopener noreferrer" class="lan">使用教程</a> ）
+                  </template>
+                  <i class="el-icon-question"></i>
+                </el-tooltip>
+              </template>
+              <el-input placeholder="api_callback 内文件将收到消息" v-model="editBtnForm.callback_data" clearable />
+            </el-form-item>
+          </el-col>
+
+        </el-row>
+      </el-form>
+      <div slot="footer">
+        <el-button @click="editShow = false">取消</el-button>
+        <el-button type="primary" @click="editbtnOK()">确认修改</el-button>
+      </div>
+    </el-dialog>
+
+  </div>

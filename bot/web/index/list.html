@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>plugin</title>
+  <!--系统CSS 你可以把css放到：/bot/res/xxx/目录下然后在下引用 引用只需要：/xxx/你的.css -->
+  <link rel="stylesheet" href="/assets/css/diy.css">
+  <link rel="stylesheet" href="/assets/css/list2.css">
+  <link rel="stylesheet" href="/assets/font/iconfont.css">
+  <!--第三方css-->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"> 
+  <style type="text/css"> 
+    [v-cloak] { 
+      display: none; 
+    } 
+  </style>  
+</head>
+<body>
+<div id="app" v-cloak>
+<div class="loca"> 
+<div class="ele-body">
+<el-row :gutter="10" class="row-bg">
+<!--********以上代码不懂不要随意修改,下面开始写element vue代码*******-->
+
+<el-col :lg="24" :xs="24" class=""> <!--右边-->
+  <el-card shadow="never">
+
+    <!-- 头部工具栏 -->
+    <div class="ele-table-tool">
+      <span class="ele-table-tool-title"><span class="miaobian size16 hei"><i class="el-icon-tickets"></i>&nbsp;页面示例(vue)&nbsp;</span>&nbsp;
+      </span>
+      <div class="ele-tool ele-space">
+        <div class="ele-action">
+          <el-radio-group v-model="where.state" size="small" @change="query('radio')">
+            <el-radio-button :label="0">所有</el-radio-button>
+            <el-radio-button :label="1">成功</el-radio-button>
+            <el-radio-button :label="2">失败</el-radio-button>
+          </el-radio-group>
+        </div>
+
+        <div class="ele-action adv-list-search-group hidden-xs-only">
+          <el-input clearable size="small" placeholder="请输入搜索内容..." v-model="where.keyword" @clear="clearquery">
+            <el-select v-model="where.t" slot="prepend" placeholder="请选择" style="width: 100px;">
+              <el-option label="机器人" value="bot"  ></el-option>
+              <el-option label="昵称" value="name" ></el-option>
+              <el-option label="用户名" value="user"  ></el-option>
+              <el-option label="电报ID" value="tgid"  ></el-option> 
+            </el-select>
+            <el-button slot="append" icon="el-icon-search" @click="query('so')"></el-button>
+          </el-input>
+        </div>
+
+        <!-- <el-button size="mini" title="下载本页数据" class="ele-btn-icon" style="font-size: 13px" icon="el-icon-download" @click="down()" /> -->
+        <el-button size="mini" title="高级查询" class="ele-btn-icon" style="font-size: 15px" icon="el-icon-news" @click="openSearch" ></el-button>
+      </div>
+    </div>
+    
+
+  
+      <el-card class="application-list-item ele-card-border " shadow="never" v-if="count == -1">
+        <el-skeleton :rows="10" animated ></el-skeleton>
+      </el-card>
+ 
+ 
+      <el-card class="application-list-item ele-card-border " shadow="never" v-if="count == 0">
+        <el-empty :image-size="60" description="没有数据"> </el-empty>
+      </el-card>
+ 
+    
+    <template v-else>
+        <table class="table">
+        <thead>
+          <tr>
+            <th style="width:60px">编号</th>
+            <th style="width:120px">机器人</th>  
+            <th style="width:120px">电报ID</th>
+        
+            <th style="width:88px">电报昵称</th>
+             
+            <th style="width:120px">用户名</th>
+        
+            <th style="width:138px">加入时间</th>
+        
+            <th style="width:88px;"><i class="el-icon-setting"></i>&nbsp;操作中心</th>
+          </tr>
+        </thead>
+        <tbody>
+        
+          <tr v-for="(item, index) in data" :key="index">
+            <td data-th="订单ID"><span class="bt-content">
+                <span class="qianlan miaobian  jiacu ">{{ item.id }}</span>
+              </span></td>
+        
+            <td data-th="机器人"><span class="bt-content">
+                <span class="molv  hover "  >@{{ item.bot }}</span>
+              </span></td> 
+              
+             
+              <td data-th="电报ID"><span class="bt-content">
+                <span class="hui  hover "  >{{ item.tgid }}</span>
+              </span></td> 
+              
+              <td data-th="电报昵称"><span class="bt-content">
+                <span class="hong cu  hover "  >{{ item.name }}</span>
+              </span></td> 
+              
+                <td data-th="用户名"><span class="bt-content">
+                <span class="lan  hover "  >{{ item.user }}</span>
+              </span></td> 
+              
+              <td data-th="加入时间"><span class="bt-content">
+                <span class="time  hover "  >{{ timedate(item.create_time) }}</span>
+              </span></td> 
+            
+            <td data-th="　" style="'display: block;"><span class="bt-content mobile-zuo">
+        
+                <el-link type="success" :underline="false" icon="el-icon-s-comment" @click="xiangqing(item)">详情</el-link> 
+              </span></td>
+        
+          </tr>
+        
+        </tbody>
+        </table>
+        </template>
+         <!-- 分页组件 --> <br />
+            <center>
+                    <el-pagination :current-page="page.page" :page-size="page.limit" :page-sizes="[20, 10, 50, 100]" :total="count" :background="true"
+                      @size-change="(d) => (page.limit = d) && query()" @current-change="(d) => (page.page = d) && query()"
+                      layout="total,sizes, prev, pager, next"
+                      class="ele-pagination-circle" ></el-pagination>
+                      </center>
+    
+        <div class="juzhong">
+             <span class="lan size12">该页面为自定义vue页面,文件位于：/bot/web/###模块名称###/list.html 你需要自行修改该文件代码</span>
+        </div>
+    </el-card>       
+</el-col>   
+ 
+
+      <!-- 高级查询抽屉 -->
+      <el-drawer size="350px" title="高级查询" :visible.sync="showSearch" :append-to-body="true">
+        <div style="padding: 22px 22px 22px 10px">
+          <el-form ref="searchForm" :model="where" label-width="82px">
+            <el-form-item label="查询条件:">
+              <el-select clearable v-model="where.t" placeholder="请选择条件" @change="selecttj">
+                <el-option label="无条件" value="" >  </el-option>
+                <el-option label="机器人" value="bot" >  </el-option>
+                <el-option label="昵称" value="name" >  </el-option>
+                <el-option label="用户名" value="user" >  </el-option>
+                <el-option label="电报ID" value="tgid" >  </el-option> 
+              </el-select>
+            </el-form-item>
+            <el-form-item label="条件内容:">
+              <el-input placeholder="请输入内容" v-model="where.keyword" clearable :disabled="sodisabled">
+              </el-input>
+            </el-form-item>
+            <el-form-item label="增加时间:">
+              <el-date-picker type="date" v-model="where.timea" placeholder="可空(↓同时)" format="yyyy-MM-dd HH:mm:ss" value-format="timestamp"
+                :default-time="'00:00:00'" @change="timeload($event)" > </el-date-picker>
+            </el-form-item>
+            <el-form-item label="终止时间:">
+              <el-date-picker type="date" v-model="where.timeb" placeholder="可空(↑同时)" format="yyyy-MM-dd HH:mm:ss" value-format="timestamp"
+                :default-time="'23:59:59'" @change="timeend($event)" > </el-date-picker>
+            </el-form-item>
+
+          </el-form>
+          <div class="ele-text-center">
+            <el-button type="success" @click="clearquery" size="small" plain>返回</el-button>
+            <el-button type="primary" @click="onSearch" size="small" :loading="loading">搜索</el-button>
+            <!-- <el-button @click="showSearch = false" size="small">关闭</el-button> -->
+          </div>
+        </div>
+      </el-drawer>         
+    
+    
+    
+        
+<!--*****************************代码结束*************************-->
+</el-row>
+</div>
+</div>
+</div>
+</body> 
+<!--系统js 你可以把js放到：/bot/res/xxx/目录下然后在下引用 引用时只需要：/xxx/你的.js-->
+<script src="/assets/js/vue.js"></script>  
+<script src="/assets/js/axios.js"></script> 
+ 
+
+<!--第三方js 如果你要加载其它js请填写到下面-->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>  
+ 
+
+<!--VUE js-->
+<script>
+var table = '###模块名称###';
+{literal}
+new Vue({
+  el: '#app',
+  //页面参数定义
+  data() {
+    return { 
+        loading: true,  //加载状态 
+        data:[],        //list数据
+        count: -1,      // 数据总数 
+        where: {// 搜索表单
+                state: 0,
+                t: '',
+                keyword: '',
+                timea: '',
+                timeb: ''
+              },
+        page: {// 分页
+                page: 1,
+                limit: 20
+              },
+        showSearch: false,// 是否显示搜索抽屉
+        sodisabled: true,// 高级搜索条件选择与否        
+    }
+  },
+  //数据监听
+  watch: {
+      
+  },
+  
+  
+  
+  //初始化1·渲染前
+  created() {
+       this.query()
+  },
+  
+  
+  
+  //初始化2·渲染后
+  mounted() {
+      
+     
+  }, 
+  
+  
+  
+  //按钮点击事件方法
+  methods: { 
+    /* -------------------------------打开高级搜索-------------------------- */
+    openSearch() {
+      this.showSearch = true;
+    },
+    //搜索条件选择事件
+    selecttj(value) {
+      if (!value) {
+        this.sodisabled = true;
+        this.where.keyword = "";
+        this.showSearch = false;
+      } else {
+        this.sodisabled = false;
+      }
+    },
+    //开始时间选择事件
+    timeload(val) {
+      if (!val) {
+        return;
+      }
+      if (this.where.timeb < 1) {
+        this.where.timeb = this.where.timea + 86399999;
+      }
+      if (this.where.timeb && this.where.timeb <= this.where.timea) {
+        this.$message.error('开始时间 须小于< 结束时间');
+        this.where.timea = '';
+        return;
+      }
+
+    },
+    //结束时间选择事件
+    timeend(val) {
+      if (!val) {
+        return;
+      }
+      this.where.timeb += 86399999;
+      if (this.where.timea < 1) {
+        this.where.timea = this.where.timeb - 86399999;
+      }
+      if (this.where.timea && this.where.timeb <= this.where.timea) {
+        this.$message.error('结束时间 须大于> 开始时间');
+        this.where.timeb = '';
+        return;
+      }
+    },
+    //高级查询 搜索按钮被点击-- 
+    onSearch(where) {
+      if (this.where.t && !this.where.keyword) { //有tj但没有内容触发
+        this.$message.error('您已选择查询条件｜请输入查询内容');
+        return;
+      } else if (this.where.keyword && !this.where.t) { //有内容未选条件
+        this.$message.error('您已输入查询内容｜请选择查询条件');
+        return;
+      }
+
+      if (this.where.timea && !this.where.timeb) {
+        this.$message.error('请准确选择结束时间条件');
+        return;
+      }
+      if (this.where.timeb && !this.where.timea) {
+        this.$message.error('请准确选择开始时间条件');
+        return;
+      }
+
+      if (!this.where.t && !this.where.timea) {
+        this.$message.error('条件｜时间｜必选一样进行筛选');
+        return;
+      }
+
+
+      this.page.page = 1; //重置搜索页为1
+      this.query();
+      this.showSearch = false;
+      this.$message.success('搜索完成');
+
+
+
+    },
+    clearquery() { //清除搜索数据并获取所有数据 
+      this.showSearch = false;
+      this.page.page = 1;
+      this.where = {};
+      this.where.state = 0;
+      this.query();
+
+    },
+    timedate(time) {
+        var now = new Date(parseInt(time) * 1000)
+        let y = now.getFullYear()
+        let m = now.getMonth() + 1
+        let d = now.getDate()
+        return y + '-' + (m < 10 ? '0' + m : m) + '-' + (d < 10 ? '0' + d : d) + ' ' + now.toTimeString().substr(0, 8)
+    },
+    //-------------------------------高级搜索结束----------------------------- 
+    //初始化时读取数据
+    query(val) {
+      if (val == "so") {
+        if (!this.where.t) {
+          this.page.page = 1;
+          this.where.t = "user"
+        } else if (this.where.keyword.length < 1) {
+          this.$message.error('请输入查询内容');
+          return;
+        }
+        this.where.state = 0;//定义为所有 
+      } else if (val == "radio") {
+        this.page.page = 1;
+      }
+      this.loading = true;
+      let whrer = Object.assign(this.where, this.page);//合并对象 
+
+
+        axios.get("/web/" + table + "/api_list",{params:whrer}).then((res) => {
+            if(!res.data.data){
+                this.loading = false;
+                this.$message.error("请求错误,接口不存在或异常");
+                return;
+            }
+            this.loading = false;
+            this.data = res.data.data.list;
+            this.count = res.data.data.count; 
+            
+        }).catch((e) => {
+            this.loading = false;
+            this.$message.error(e.message);
+        }); 
+
+
+
+    },
+    xiangqing(item){
+       this.$message.success('自己修改代码,本文件为示例文件获取机器人用户列表'); 
+    }  
+  }, 
+  
+  
+  
+  //离开页面前事件
+  beforeDestroy () {
+  },
+})
+{/literal}
+</script>
+</html>

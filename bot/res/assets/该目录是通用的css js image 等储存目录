@@ -1,0 +1,7 @@
+你可以通过： 
+域名/assets/js/vue.js   访问对应静态js文件
+域名/assets/css/diy.css 访问对应静态css文件
+
+各种images ，font 等等任何静态文件都可以放在该目录被直接访问
+
+没有绑定域名的就是：http://ip:8686/assets/js/vue.js

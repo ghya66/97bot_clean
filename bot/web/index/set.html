@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>plugin</title>
+  <!--系统CSS 你可以把css放到：/bot/res/xxx/目录下然后在下引用 引用只需要：/xxx/你的.css -->
+  <link rel="stylesheet" href="/assets/css/diy.css">
+  <link rel="stylesheet" href="/assets/css/list2.css">
+  <link rel="stylesheet" href="/assets/font/iconfont.css">
+  <!--第三方css-->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"> 
+  <style type="text/css"> 
+    [v-cloak] { 
+      display: none; 
+    } 
+  </style>  
+</head>
+<body>
+<div id="app" v-cloak>
+<div class="loca"> 
+<div class="ele-body">
+<el-row :gutter="10" class="row-bg">
+<!--********以上代码不懂不要随意修改,下面开始写element vue代码*******-->
+
+    <el-card class="box-card" shadow="never">
+            <template slot="header">
+              <i class="el-icon-s-tools hui" ></i>
+              <span class="left2 qianlan"> ###模块名称###设置</span>
+              <el-button style="float: right; padding: 3px 0" type="text"></el-button>
+            </template>
+        <el-form ref="setform" :model="setForm" label-width="128px" label-suffix="：" style="padding:10px 0">     
+            
+             
+
+        <el-col :lg="10" :xs="24"> 
+            
+                <el-form-item label="设置机器人" size="small" prop="value">
+                  <el-select v-model="setForm.bot" allow-create filterable placeholder="请选择机器人" @change="remoteSeleok" style="width:180px">
+                    <el-option v-for="item in botlist" :key="item" :label="item" :value="item">
+                    </el-option>
+                  </el-select>  
+                </el-form-item>  
+                
+                
+              <!--<el-form-item label="选择框" size="small">-->
+              <!--  <el-radio v-model="setForm.json['选择框']" :label="0">选择框1</el-radio>-->
+              <!--  <el-radio v-model="setForm.json['选择框']" :label="1">选择框2</el-radio>-->
+              <!--</el-form-item>-->
+                
+              
+              <el-form-item   size="small" >
+                  <template slot="label">
+                    设置页面示例 数据表：###模块名称###_set > value 字段
+                    <el-tooltip content="位于：bot/web/###模块名称###/set.html">
+                      <i class="el-icon-question"></i>
+                    </el-tooltip>
+                  </template>
+                  <el-input type="textarea" :rows="6" placeholder="位于：bot/web/###模块名称###/set.html" v-model="setForm.value"> </el-input> 
+              </el-form-item> 
+              
+              
+              <!--<el-form-item>-->
+              <!--    <template slot="label">-->
+              <!--        <span class="lan shuiying">自定义按钮</span>-->
+              <!--    </template>-->
+              <!-- {include file="index/btn" /} -->
+               
+              <!-- </el-form-item>--> 
+              
+              
+              
+              <div class="juzhong">
+                <!--<span class="qianlan ">说明消息 <span class="jiacu hong ">高亮</span> 说明消息</span>-->
+              </div>
+              
+              
+               <el-form-item>
+                  <!--<el-button  @click="load()">刷新</el-button> -->
+                <el-button type="primary" @click="update()">保存设置</el-button>  
+              </el-form-item> 
+           
+        </el-col> 
+        
+        
+        
+        </el-form> 
+ </el-card>
+    
+    
+    
+        
+<!--*****************************代码结束*************************-->
+</el-row>
+</div>
+</div>
+</div>
+</body> 
+<!--系统js 你可以把js放到：/bot/res/xxx/目录下然后在下引用 引用时只需要：/xxx/你的.js-->
+<script src="/assets/js/vue.js"></script>  
+<script src="/assets/js/axios.js"></script> 
+<script src="/assets/js/clipboard.js"></script> 
+ 
+
+<!--第三方js 如果你要加载其它js请填写到下面-->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>  
+ 
+
+<!--VUE js-->
+<!--VUE js-->
+<script>
+var table = '###模块名称###';
+{literal}
+new Vue({
+  el: '#app',
+  //页面参数定义
+  data() {
+    return { 
+        loading: true,  //加载状态 
+        setForm:{json:{}}, 
+        botlist:[],
+      //btn a  
+      editShow: false,
+      editBtnForm: {},
+      anniu: [],
+      eeedit: { index: 0, indexs: 0 },
+      ruled: {
+        text: [
+          { required: true, message: '按钮名称不能为空', trigger: 'blur' }
+        ],
+        type: [
+          { required: true, message: '请选择按钮类型', trigger: 'blur' }
+        ],
+        url: [
+          { required: true, message: '输入点击按钮打开的地址', trigger: 'blur' }
+        ],
+        callback_data: [
+          { required: true, message: '输入点击按钮的回调消息', trigger: 'blur' }
+        ],
+      },
+      //btn b
+      
+    }
+  },
+  //数据监听
+  watch: {
+      
+  },
+  
+  
+  
+  //初始化1·渲染前
+  created() {
+      this.load() 
+  },
+  
+  
+  
+  //初始化2·渲染后
+  mounted() { 
+      this.loading = true;
+        axios.get("/app/appStore/bot/index ",{}).then((res) => {
+            this.loading = false;
+            this.botlist = res.data.data
+            this.botlist.unshift("全局设置")
+            
+        }).catch((e) => {
+            this.loading = false;
+            this.$message.error(e.message);
+        }); 
+      
+     
+  }, 
+  
+  
+  
+  //按钮点击事件方法
+  methods: { 
+    copy(obj,text){
+        const clipboard = new ClipboardJS(obj, {
+        text: function (trigger) {
+                return text;
+            }
+        });
+        clipboard.on('success', e => { 
+            clipboard.destroy()
+            this.$message.success('复制成功');
+            return ;
+        });
+        clipboard.on('error', e => {
+            clipboard.destroy()
+            this.$message.error('复制失败'); 
+            return ;
+        });
+    },   
+    //以上按钮事件必备
+    load(){ 
+        axios.get("/web/"+table+"/setget",{params:{bot:this.setForm.bot}}).then((res) => { 
+            if(!res.data.data){
+                this.$message.error("该机器人没有单独设定,默认使用全局设置");
+                return false
+            }
+            
+            
+            if (res.data.data.bot == 0 || res.data.data.bot == '0') {
+                res.data.data.bot = "全局设置"  
+            }
+            this.setForm = res.data.data
+            if(this.setForm.json.anniu){
+                this.anniu = this.setForm.json.anniu;
+            }
+            
+        }).catch((e) => {
+            this.loading = false;
+            this.$message.error(e.message);
+        });    
+    },
+    update(){
+        
+        if(this.anniu){
+            this.setForm.json.anniu = this.anniu 
+        }
+        
+        axios.post("/web/"+table+"/update",{type:"set",data:this.setForm}).then((res) => { 
+            
+            this.$message.success(res.data.msg);
+            
+        }).catch((e) => {
+            this.loading = false;
+            this.$message.error(e.message);
+        });  
+        
+    },
+    remoteSeleok(){
+       this.load() 
+    },
+    
+    //按钮事件开始
+    btnsele(val) {
+      if (val == "url") {
+        delete this.editBtnForm.callback_data
+      } else if (val == "callback_data") {
+        delete this.editBtnForm.url
+      } 
+
+    },
+
+    addbtn(index) {
+      this.anniu[index].push({ text: '新按钮', url: "https://www.97bot.com" });
+    },
+    editbtn(index, indexs, items) {
+      this.editBtnForm = { ...items }
+      this.editShow = true
+      //记录按钮偏移  后续修改
+      this.eeedit.index = index
+      this.eeedit.indexs = indexs
+
+    },
+    delbtn(id, index, indexs, comId) {
+      this.anniu[index].splice(indexs, 1);//删除指定obj 内 第x个元素   
+    },
+    newHang() {
+      this.anniu.push([])
+    },
+    delHang(index) {
+      this.anniu.splice(this.anniu.length - 1, 1);
+    },
+    editbtnOK() {
+      this.$refs['editBtnForm'].validate((valid, obj) => {
+        if (valid) {
+          this.anniu[this.eeedit.index][this.eeedit.indexs] = this.editBtnForm
+          this.editShow = false
+        }
+      })
+
+    },
+    //按钮事件结束
+     
+  }, 
+  
+  
+  
+  //离开页面前事件
+  beforeDestroy () {
+  },
+})
+{/literal}
+</script>
+</html>

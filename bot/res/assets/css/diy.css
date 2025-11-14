@@ -1,0 +1,490 @@
+body { 
+    font-size: 14px;
+    color: #606266;
+    font-family: -apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Segoe UI,Arial,Roboto,'PingFang SC',miui,'Hiragino Sans GB','Microsoft Yahei',sans-serif;
+}
+.row-bg {
+    padding: 4px;
+}
+
+.cu {
+  font-weight: bold;
+}
+
+.size10 {
+  font-size: 10px;
+}
+
+.size11 {
+  font-size: 11px;
+}
+
+.size12 {
+  font-size: 12px;
+}
+
+.size13 {
+  font-size: 13px;
+}
+
+.size14 {
+  font-size: 14px;
+}
+
+.size15 {
+  font-size: 15px;
+}
+
+.size16 {
+  font-size: 16px;
+}
+
+.size13 {
+  font-size: 17px;
+}
+
+.size18 {
+  font-size: 18px;
+}
+
+.size28 {
+  font-size: 28px;
+}
+
+.weicu {
+  -webkit-text-stroke-width: thin;
+}
+
+.jiacu {
+  font-weight: 800;
+}
+
+.shuiyin,
+.miaobian {
+  -webkit-text-stroke: thin;
+}
+
+.del {
+  text-decoration: line-through;
+  /* -webkit-text-stroke-width: thin;  */
+}
+
+.url {
+  text-decoration: underline;
+  /* -webkit-text-stroke-width: thin;  */
+}
+
+.nums {
+  font-variant-numeric: oldstyle-nums;
+}
+
+.huanhang {
+  white-space: pre-line !important;
+}
+
+.dingdan {
+  cursor: pointer;
+  color: #3d95ec;
+}
+
+.shoushi {
+  cursor: pointer;
+}
+
+.zi {
+  color: #6d4af9;
+}
+
+.hong {
+  color: #f00;
+}
+
+.cheng {
+  color: #ff976a;
+}
+
+.huang {
+  color: #faad14;
+}
+
+.danhuangb {
+  background: #ffdead61;
+}
+
+.lv {
+  color: #3ec742;
+}
+
+.molv {
+  color: #33cc99;
+}
+
+.lan {
+  color: #39f;
+}
+
+.qianlan {
+  color: #797d9d;
+}
+
+.huilan {
+  color: #33a2bb;
+}
+
+.shenlan {
+  color: #515fff;
+}
+
+.time {
+  color: #ef7e7f;
+}
+
+.hui {
+  color: #969799;
+}
+
+.hei {
+  color: #000000AA;
+}
+
+.molvh:hover {
+  color: #28b686;
+}
+
+.dingdan:hover {
+  color: #046acf;
+}
+
+.dingdan:active {
+  color: #00f;
+}
+
+.hover:hover {
+  cursor: pointer;
+  color: var(--color-primary);
+}
+
+.hover:active {
+  cursor: pointer;
+  color: var(--color-primary-5);
+}
+
+.redian:hover {
+  color: var(--color-primary);
+}
+
+.redian:active {
+  color: var(--color-primary-5);
+}
+
+
+.caps {
+  font-variant: all-small-caps;
+}
+
+.mini {
+  font-size: 12px;
+}
+
+.jincou {
+  letter-spacing: -1px;
+}
+
+.juzhong {
+  text-align: center;
+}
+
+.left1 {
+  padding-left: 1px;
+}
+
+.left2 {
+  padding-left: 2px;
+}
+
+.left3 {
+  padding-left: 3px;
+}
+
+.left4 {
+  padding-left: 4px;
+}
+
+.left5 {
+  padding-left: 5px;
+}
+
+.left6 {
+  padding-left: 6px;
+}
+
+.left8 {
+  padding-left: 8px;
+}
+
+.left10 {
+  padding-left: 10px;
+}
+
+.right2 {
+  padding-right: 2px;
+}
+
+.right4 {
+  padding-right: 4px;
+}
+
+.right6 {
+  padding-right: 6px;
+}
+
+.right8 {
+  padding-right: 8px;
+}
+
+.right10 {
+  padding-right: 10px;
+}
+
+.top2 {
+  margin-top: 2px;
+}
+
+.top4 {
+  margin-top: 4px;
+}
+
+.top6 {
+  margin-top: 6px;
+}
+
+.top8 {
+  margin-top: 8px;
+}
+
+.top10 {
+  margin-top: 10px;
+}
+
+.top15 {
+  margin-top: 15px;
+}
+
+.top20 {
+  margin-top: 20px;
+}
+
+.line30 {
+  line-height: 30px;
+}
+
+.line28 {
+  line-height: 28px;
+}
+
+.line26 {
+  line-height: 26px;
+}
+
+.line24 {
+  line-height: 24px;
+}
+
+.line22 {
+  line-height: 22px;
+}
+
+.line20 {
+  line-height: 20px;
+}
+
+.divCenter {
+  text-align: center;
+}
+
+.divleft {
+  display: inline-block;
+  text-align: left;
+}
+
+.el-tag.el-tag--jinzhi {
+  background-color: #ffffff;
+  border-color: #dddddd;
+  color: #d3d1d1;
+  cursor: not-allowed;
+}
+
+.kuang {
+  /* width: min-content; */
+  height: 13px;
+  position: relative;
+  /* float: right; */
+  text-align: center;
+  font-size: 10px;
+  font-weight: unset;
+  /* color: #6d4af9; */
+  padding: 0px 1px;
+  margin-left: 6px;
+  border: 1px solid;
+  line-height: 0.9rem;
+  -webkit-text-size-adjust: none;
+}
+
+.dibu {
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  z-index: 999;
+}
+
+#Menu {
+  position: fixed;
+  right: 120px;
+  bottom: 30px;
+  width: 40px;
+  height: 40px;
+  z-index: 99999999;
+  box-shadow: 0px 0px 4px 4px #ecefef;
+  border-radius: 600px;
+}
+
+#TOPUp {
+  position: fixed;
+  right: 20px;
+  bottom: 30px;
+  width: 40px;
+  height: 40px;
+  z-index: 99999999;
+  box-shadow: 0px 0px 2px 2px #dfdfdf;
+  border-radius: 600px;
+}
+
+
+/* tag状态 标签 */
+.el-tag.el-tag--lv {
+  background-color: #3ec742;
+  border-color: #3ec742;
+  color: #ffffff;
+}
+
+.el-tag.el-tag--fenhong {
+  background-color: #ff7171;
+  border-color: #ff7171;
+  color: #ffffff;
+}
+
+.el-tag.el-tag--huang {
+  background-color: #ffffc1;
+  border-color: #dddd8c;
+  color: #f15151;
+}
+
+.el-tag.el-tag--hui {
+  background-color: #909399;
+  border-color: #909399;
+  color: #ffffff;
+  cursor: not-allowed;
+}
+
+.el-tag.el-tag--lan {
+  background-color: #1890ff;
+  border-color: #1890ff;
+  color: #ffffff;
+}
+
+.el-tag.el-tag--molv {
+  background-color: #33cc99;
+  border-color: #33cc99;
+  color: #fff;
+}
+
+.el-tag.el-tag--hong {
+  background-color: #f35959;
+  border-color: #f35959;
+  color: #ffffff;
+}
+
+/* -------------------- */
+
+
+
+/* element表单 自定义格式 */
+.CSSmodal .el-form-item {
+  margin-bottom: 22px !important;
+}
+
+
+.demo-table-expand label {
+  width: 90px;
+  color: #909399;
+  padding: 0px 0px 0px 20px;
+}
+
+/* .demo-table-expand span {
+  color: #7898bf;
+} */
+
+.demo-table-expand .el-form-item {
+  margin-right: 0;
+  margin-bottom: 0;
+  width: 33.333%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 1200px) {
+  .demo-table-expand .el-form-item {
+    width: 100%;
+  }
+}
+
+
+/* json edit 编辑器 UI风格 */
+.loca .jsoneditor-menu {
+  background-color: var(--color-primary);
+  border-bottom: 1px solid var(--color-primary);
+}
+
+.jsoneditor-frame {
+  display: none;
+}
+
+.loca .jsoneditor {
+  border: 1px solid #c7dbc8;
+}
+
+.loca .ace-jsoneditor .ace_gutter {
+  background: #edfbf4;
+  color: #9d9999;
+}
+
+.loca .jsoneditor-format,
+.loca .jsoneditor-compact,
+.loca .jsoneditor-poweredBy {
+  display: none;
+}
+
+.el-tree-node__children [role='group'] {
+  display: flex;
+  flex-wrap: wrap;
+  column-count: 2;
+}
+
+
+.el-link.el-link--danger.is-disabled {
+  color: #dbdbdb !important;
+}
+
+.el-link.el-link--success.is-disabled {
+  color: #dbdbdb !important;
+}
+
+.el-link.el-link--.is-disabled {
+  color: #dbdbdb !important;
+}
+
+.fontyahei {
+  font-family: "Microsoft YaHei", sans-serif;
+}
+@media only screen and (max-width:767px){.hidden-xs-only{display:none!important}}@media only screen and (min-width:768px){.hidden-sm-and-up{display:none!important}}@media only screen and (min-width:768px) and (max-width:991px){.hidden-sm-only{display:none!important}}@media only screen and (max-width:991px){.hidden-sm-and-down{display:none!important}}@media only screen and (min-width:992px){.hidden-md-and-up{display:none!important}}@media only screen and (min-width:992px) and (max-width:1199px){.hidden-md-only{display:none!important}}@media only screen and (max-width:1199px){.hidden-md-and-down{display:none!important}}@media only screen and (min-width:1200px){.hidden-lg-and-up{display:none!important}}@media only screen and (min-width:1200px) and (max-width:1919px){.hidden-lg-only{display:none!important}}@media only screen and (max-width:1919px){.hidden-lg-and-down{display:none!important}}@media only screen and (min-width:1920px){.hidden-xl-only{display:none!important}}
